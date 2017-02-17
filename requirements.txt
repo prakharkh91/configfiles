@@ -1,0 +1,15 @@
+sudo apt-get install git
+sudo apt-get install zsh 
+sudo apt-get install guake
+sudo apt-get install texlive-full
+sudo apt-get install 
+sudo apt-get install
+sudo apt-get install
+sudo apt-get install
+sudo apt-get install
+sudo apt-get install
+sudo apt-get install
+sudo apt-get install
+sudo apt-get install
+sudo apt-get install
+sudo apt-get install
