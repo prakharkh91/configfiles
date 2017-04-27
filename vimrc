@@ -1,8 +1,31 @@
-autocmd InsertEnter * : silent exec "!printf '\033]50;CursorShape=2\x7'" | exec ":redraw!"
-autocmd InsertLeave * : silent exec "!printf '\033]50;CursorShape=0\x7'" | exec ":redraw!"
+"autocmd InsertEnter * : silent exec "!printf '\033]50;CursorShape=2\x7'" | exec ":redraw!"
+"autocmd InsertLeave * : silent exec "!printf '\033]50;CursorShape=0\x7'" | exec ":redraw!"
+"
+set nocompatible              " required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
+
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
 
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
+set relativenumber
+
 
 
 set nocompatible              " required
@@ -43,9 +66,9 @@ Plug '~/my-prototype-plugin'
 "
 " " Add plugins to &runtimepath
 
-Plug 'davidhalter/jedi-vim'  " Python autocomplete
+"Plug 'davidhalter/jedi-vim'  " Python autocomplete
 
-Plug 'klen/python-mode'     " Python autocomplete
+"Plug 'klen/python-mode'     " Python autocomplete
 
 Plug 'Valloric/YouCompleteMe' "C autocomplete YCM
 
@@ -172,4 +195,102 @@ nmap <LocalLeader>pp :set paste!<cr>
 "  set foldtext=CFoldText()
 "  set foldnestmax=1
 "endfunction
+let g:livepreview_previewer = 'okular'
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PYTHON IDE
+set splitbelow
+set splitright
+" split navigations
+" Ctrl-j move to the split below
+" Ctrl-k move to the split above
+" Ctrl-l move to the split to the right
+" Ctrl-h move to the split to the left
+
+noremap <C-J> <C-W><C-j>
+noremap <C-K> <C-W><C-k>
+noremap <C-L> <C-W><C-l>
+noremap <C-H> <C-W><C-h>
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+
+" Python Indentation
+" au BufNewFile,BufRead *.py
+"     \ set tabstop=4
+"     \ set softtabstop=4
+"     \ set shiftwidth=4
+"     \ set textwidth=79
+"   \ set expandtab
+"    \ set autoindent
+"    \ set fileformat=unix
+"
+" Bad whitespace
+"au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+" Python Auto Indent
+Plug 'vim-scripts/indentpython.vim'
+" Python3 dev should be done with utf-8 encoding
+set encoding=utf-8
+" Python Autocomplete
+Bundle 'Valloric/YouCompleteMe'
+
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" The former line ensures that the autocomplete window goes away when you’re done with it,
+" and the latter defines a shortcut for goto definition.
+" My leader key is mapped to space, so space-g will goto definition of whatever
+" I’m currently on. Helpful when exploring new code.
+
+
+" Making VIM awake for Virtual env
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+" Syntax highlighting
+Plug 'scrooloose/syntastic'
+" pep8  checking
+Plug 'nvie/vim-flake8'
+
+" Make code look pretty
+let python_highlight_all=1
+syntax on
+
+" Color scheme and shit
+Plug 'jnurmine/Zenburn'
+Plug 'altercation/vim-colors-solarized'
+if has('gui_running')
+  set background=dark
+  colorscheme solarized
+endif
+
+" Nerd tree for file browsing
+Plug 'scrooloose/nerdtree'
+" Nerd tree tabs
+Plug 'jistr/vim-nerdtree-tabs'
+" Hide pyc files
+let NERDTreeIgnore=['\.pyc$', '\~$']
+
+"As expected, press Ctrl-P to enable the search and then just start typing.
+"If your search matches anything close to the file you’re looking for, it will find it.
+"Oh – and it’s not just files; it will find tags as well!
+Plug 'kien/ctrlp.vim'
+
+" Git integration
+Plug 'tpope/vim-fugitive'
+
+" Powerline
+Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
