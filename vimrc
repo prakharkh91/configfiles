@@ -247,14 +247,14 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 
 " Making VIM awake for Virtual env
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
+" py << EOF
+" import os
+" import sys
+" if 'VIRTUAL_ENV' in os.environ:
+"   project_base_dir = os.environ['VIRTUAL_ENV']
+"   activate_this = os.path.join(project_base_dir, 'bin/activate')
+"   execfile(activate_this, dict(__file__=activate_this))
+" EOF
 
 " Syntax highlighting
 Plug 'scrooloose/syntastic'
@@ -265,13 +265,14 @@ Plug 'nvie/vim-flake8'
 let python_highlight_all=1
 syntax on
 
+colorscheme delek
 " Color scheme and shit
-Plug 'jnurmine/Zenburn'
-Plug 'altercation/vim-colors-solarized'
-if has('gui_running')
-  set background=dark
-  colorscheme solarized
-endif
+" Plug 'jnurmine/Zenburn'
+" Plug 'altercation/vim-colors-solarized'
+" if has('gui_running')
+"    set background=dark
+"    colorscheme solarized
+" endif
 
 " Nerd tree for file browsing
 Plug 'scrooloose/nerdtree'
