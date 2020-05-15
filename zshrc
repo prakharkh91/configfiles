@@ -30,16 +30,11 @@ antigen bundle z
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search ./zsh-history-substring-search.zsh
 # NVM bundle
-#export NVM_LAZY_LOAD=true
-#antigen bundle lukechilds/zsh-nvm
-#antigen bundle Sparragus/zsh-auto-nvm-use
-# Syntax highlighting bundle.
-antigen bundle zsh-users/zsh-syntax-highlighting
+export NVM_LAZY_LOAD=true
+antigen bundle lukechilds/zsh-nvm
+antigen bundle Sparragus/zsh-auto-nvm-use
 # Setup zsh-autosuggestions
-# source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# Syntax highlighting bundle.
-antigen bundle zsh-users/zsh-syntax-highlighting
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Load the theme.
 #antigen theme robbyrussell
@@ -48,3 +43,5 @@ antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
 
 # Tell Antigen that you're done.
 antigen apply
+
+
